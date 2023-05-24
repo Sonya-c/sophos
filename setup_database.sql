@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS SOPHOS;
 USE SOPHOS;
 
 CREATE TABLE clients (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255),
     names VARCHAR(255),
     lastnames VARCHAR(255),
@@ -15,22 +15,22 @@ CREATE TABLE clients (
 
 
 CREATE TABLE director (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255)
 );
 
 CREATE TABLE producer (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255)
 );
 
 CREATE TABLE platform (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255)
 );
 
 CREATE TABLE videogame_title (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255),
     realiseDate DATE,
     loanPrice DECIMAL(8,2),
@@ -44,14 +44,14 @@ CREATE TABLE videogame_title (
 );
 
 CREATE TABLE videogame_unit (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     avaliabl_status BOOLEAN,
     videogame_title_id INT,
     FOREIGN KEY (videogame_title_id) REFERENCES videogame_title(id)
 );
 
 CREATE TABLE loan (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     loanDate DATE,
     returnDate DATE,
     status BOOLEAN,

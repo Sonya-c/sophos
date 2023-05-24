@@ -3,17 +3,24 @@ package com.reto.sophos.models;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Client {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private String username;
     private String names;
     private String lastnames;
     private String email;
     private String cellphone;
     private String address;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
     public int getId() {
@@ -34,6 +41,10 @@ public class Client {
 
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
     
     public void setLastnames(String lastnames) {

@@ -1,0 +1,49 @@
+<!-- client-edit.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Client</title>
+</head>
+<body>
+    <h1>Edit Client</h1>
+    <form method="POST" th:action="@{/clients/edit/}" th:object="${client}">
+        <p>
+            <label>Id: </label>
+            <input type="hidden" th:field="*{id}" disabled>
+        </p> 
+        <p>
+            <label>Username: </label>
+            <input type="text" th:field="*{username}" required>
+        </p>
+        <p>
+            <label>Name:</label>
+            <input type="text" th:field="*{names}" required>
+        </p>
+        <p>
+            <label>Lastname:</label>
+            <input type="text" th:field="*{lastnames}" required>
+        </p>
+        <p>
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" required>
+        </p>
+        
+        <p>
+            <label>Cellphone:</label>
+            <input type="text" th:field="*{cellphone}" required>
+        </p>
+        <p>
+            <label>Address:</label>
+            <input type="text" th:field="*{address}" required>
+        </p>
+ 
+        <p>
+            <label>Birthdate:</label>
+            <input type="date" th:field="*{birthdate}" required>
+        </p>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
