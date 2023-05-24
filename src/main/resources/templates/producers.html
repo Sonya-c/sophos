@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Producers</title>
+</head>
+<body>
+    <h1>Producers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="producer : ${producers}">
+                <td th:text="${producer.id}"></td>
+                <td th:text="${producer.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>New Producer</h2>
+    <form th:action="@{/producers}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

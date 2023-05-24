@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Directors</title>
+</head>
+<body>
+    <h1>Directors</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="director : ${directors}">
+                <td th:text="${director.id}"></td>
+                <td th:text="${director.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>New Director</h2>
+    <form th:action="@{/directors}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Platforms</title>
+</head>
+<body>
+    <h1>Platforms</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="platform : ${platforms}">
+                <td th:text="${platform.id}"></td>
+                <td th:text="${platform.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>New Platform</h2>
+    <form th:action="@{/platforms}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
