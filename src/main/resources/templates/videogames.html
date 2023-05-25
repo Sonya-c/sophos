@@ -16,6 +16,7 @@
         <th>Director</th>
         <th>Producer</th>
         <th>Platform</th>
+        <th>Number of Units</th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,10 @@
         <td th:text="${videogame.director.name}">Director</td>
         <td th:text="${videogame.producer.name}">Producer</td>
         <td th:text="${videogame.platform.name}">Platform</td>
+        <td>
+          <a th:href="@{'/videogames/edit/' + ${videogame.id}}">Edit</a>
+          <a th:href="@{'/videogames/delete/' + ${videogame.id}}">Delete</a>
+
       </tr>
     </tbody>
   </table>

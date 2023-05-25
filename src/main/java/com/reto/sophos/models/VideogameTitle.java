@@ -1,5 +1,6 @@
 package com.reto.sophos.models;
-
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
@@ -31,7 +32,17 @@ public class VideogameTitle {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "platform_id")
     private Platform platform;
+    
+    @OneToMany(mappedBy = "videogameTitle", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VideogameUnit> videogameUnits = new ArrayList<>();
+   
+    public void setVideogameUnits(List<VideogameUnit> videogameUnits) {
+        this.videogameUnits = videogameUnits;
+    }
 
+    public  List<VideogameUnit> getVideogameUnits() {
+        return videogameUnits;
+    }
     // Getters
     public int getId() {
         return id;
