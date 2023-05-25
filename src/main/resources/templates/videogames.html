@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Videogames</title>
+</head>
+<body>
+  <h1>Videogames</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Release Date</th>
+        <th>Loan Price</th>
+        <th>Protagonists</th>
+        <th>Director</th>
+        <th>Producer</th>
+        <th>Platform</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="videogame : ${videogames}">
+        <td th:text="${videogame.title}">Title</td>
+        <td th:text="${#dates.format(videogame.realiseDate, 'dd/MM/yyyy')}">Release Date</td>
+        <td th:text="${videogame.loanPrice}">Loan Price</td>
+        <td th:text="${videogame.protagonists}">Protagonists</td>
+        <td th:text="${videogame.director.name}">Director</td>
+        <td th:text="${videogame.producer.name}">Producer</td>
+        <td th:text="${videogame.platform.name}">Platform</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Create a new Videogame Title</h2>
+  <form th:action="@{/videogames}" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required /><br>
+
+    <label for="realiseDate">Release Date:</label>
+    <input type="date" id="realiseDate" name="realiseDate" required /><br>
+
+    <label for="loanPrice">Loan Price:</label>
+    <input type="number" id="loanPrice" name="loanPrice" min="0" step="0.01" required /><br>
+
+    <label for="protagonists">Protagonists:</label>
+    <input type="text" id="protagonists" name="protagonists" required /><br>
+
+    <label for="director">Director:</label>
+    <select id="director" name="director.id" required>
+      <option value="">Select a Director</option>
+      <option th:each="director : ${directors}" th:value="${director.id}" th:text="${director.name}"></option>
+    </select><br>
+
+    <label for="producer">Producer:</label>
+    <select id="producer" name="producer.id" required>
+      <option value="">Select a Producer</option>
+      <option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}"></option>
+    </select><br>
+
+    <label for="platform">Platform:</label>
+    <select id="platform" name="platform.id" required >
+      <option value="">Select a Platform</option>
+      <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
+    </select><br>
+
+    <button type="submit">Create New Videogame Title</button>
+  </form>
+</body>
+</html>

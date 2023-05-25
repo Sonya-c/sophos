@@ -43,9 +43,9 @@ public class ClientController {
         return "redirect:/clients";
     }
     
-    @PostMapping("/edit/")
-    public String updateClient(@ModelAttribute("client") Client updatedClient) {
-        Optional<Client> client = clientRepository.findById(updatedClient.getId());
+    @PostMapping("/edit/{id}")
+    public String updateClient(@PathVariable("id") int id, @ModelAttribute("client") Client updatedClient) {
+        Optional<Client> client = clientRepository.findById(id);
         if (client.isPresent()) {
             Client c = client.get();
             c.setUsername(updatedClient.getUsername());

@@ -32,8 +32,8 @@ CREATE TABLE platform (
 CREATE TABLE videogame_title (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255),
-    realiseDate DATE,
-    loanPrice DECIMAL(8,2),
+    realise_date DATETIME(6),
+    loan_price DOUBLE,
     protagonists VARCHAR(255),
     director_id INT,
     producer_id INT,
