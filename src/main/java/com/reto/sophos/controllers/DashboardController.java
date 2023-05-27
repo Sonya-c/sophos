@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.Date;
+import java.util.stream.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,11 +38,13 @@ public class DashboardController {
     public String dashboard(Model model) {
         Client client = findMostFrequentClient();
         Map.Entry<VideogameTitle, Integer> videogame = findMostFrequentVideogame();
+        List<Loan> loans = getTodayLoans();
 
         model.addAttribute("client", client);
         model.addAttribute("clientloans", client.getLoans().size());
         model.addAttribute("videogame", videogame.getKey());
         model.addAttribute("videogameloans", videogame.getValue());
+        model.addAttribute("loans", loans);
 
         return "dashboard";
     }
@@ -66,6 +70,23 @@ public class DashboardController {
             loanCounts.put(videogame, loanCounts.getOrDefault(videogame, 0) + 1);
         }
         return Collections.max(loanCounts.entrySet(), Map.Entry.comparingByValue());
+    }
+
+    public List<Loan> getTodayLoans() {
+        Date today = new Date();
+        System.out.println(today.toString());
+        for (Loan loan : loanRepository.findAll()) {
+            System.out.println(loan.getLoanDate().toString() + loan.getLoanDate().compareTo(today));
+            
+        }
+        return loanRepository.findAll()
+            .stream()
+            .filter(loan -> 
+                        loan.getLoanDate().getYear() == today.getYear() &&
+                        loan.getLoanDate().getMonth() == today.getMonth() &&
+                        loan.getLoanDate().getDay() == today.getDay()
+                   )
+            .collect(Collectors.toList());
     }
 
 }

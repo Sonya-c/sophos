@@ -10,11 +10,13 @@
       <thead>
         <th>Videogame</th>
         <th>Return date</th>
+        <th>Status</th>
       </thead>
       <tbody>
         <tr th:each="loan : ${loans}">
           <td th:text="${loan.videogameUnit.videogameTitle.title}"></td>
           <td th:text="${loan.returnDate}"></td>
+          <td th:text="${loan.status}"></td>
         </tr>
       </tbody>
     </table>

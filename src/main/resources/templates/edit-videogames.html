@@ -58,11 +58,15 @@
         <thead>
             <th>Unit id</th>
             <th>Unit status</th>
+            <th>Loan</th>
         </thead>
         <tbody>
             <tr th:each="unit : ${videogame.videogameUnits}">
                 <td th:text="${unit.id}">Unit id</td>
                 <td th:text="${unit.avaliable_status}">Unit status</td>
+                <td th:if="${!unit.avaliable_status}">
+                    <a href="/loans">Go to loans</a>
+                </td>
             </tr>
         </tbody>
     </table>

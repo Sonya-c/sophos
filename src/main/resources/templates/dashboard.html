@@ -13,6 +13,46 @@
     <p th:text="${videogame.title}"></p>
     <p th:text="${videogameloans}"></p>
     <p>Today loans</p>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Loan date</th>
+            <th>Return date</th>
+            <th>Status</th>
+            <th>Videogame</th>
+            <th>Unit</th>
+            <th>Client</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <tr th:each="loan : ${loans}">
+                <td th:text="${loan.id}"></td>
+                <td th:text="${#dates.format(loan.loanDate, 'yyyy-mm-dd')}"></td>
+                <td th:text="${#dates.format(loan.returnDate, 'yyyy-mm-dd')}"></td>
+                <td th:text="${loan.status}">
+                </td>
+                <td>
+                    <a
+                        th:href="@{/videogames/edit/{id}(id=${loan.videogameUnit.videogameTitle.id})}"
+                        th:text="${loan.videogameUnit.videogameTitle.title}">
+                    </a> 
+                </td>
+                <td th:text="${loan.videogameUnit.id}"></td>
+                <td>
+                    <a
+                        th:href="@{/clients/edit/{id}(id=${loan.client.id})}"
+                        th:text="${loan.client.username}">
+                    </a> 
+                </td>
+                <td th:if="${!loan.status}">
+                    <form method="post" th:action="@{/loans/return/{id}(id=${loan.id})}">
+                        <button type="submit">Return</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     <a th:href="@{/videogames/}">Videogames</a>
     <a th:href="@{/clients/}">clients</a>
     <a th:href="@{/loans/}">loans</a>
