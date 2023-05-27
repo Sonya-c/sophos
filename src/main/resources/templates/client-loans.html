@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My loans</title>
+</head>
+<body>
+    <h1>My loans</h1>
+    <table>
+      <thead>
+        <th>Videogame</th>
+        <th>Return date</th>
+      </thead>
+      <tbody>
+        <tr th:each="loan : ${loans}">
+          <td th:text="${loan.videogameUnit.videogameTitle.title}"></td>
+          <td th:text="${loan.returnDate}"></td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+

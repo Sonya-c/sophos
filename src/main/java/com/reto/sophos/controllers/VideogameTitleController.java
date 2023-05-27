@@ -69,7 +69,7 @@ public class VideogameTitleController {
         
     Director director = directorRepository.findById(directorId)
       .orElseThrow(() -> new IllegalArgumentException("Invalid director ID: " + directorId));
-            
+      
     Producer producer = producerRepository.findById(producerId)
       .orElseThrow(() -> new IllegalArgumentException("Invalid producer ID: " + producerId));
             
@@ -79,7 +79,7 @@ public class VideogameTitleController {
     videogameTitle.setDirector(director);
     videogameTitle.setProducer(producer);
     videogameTitle.setPlatform(platform);
-
+    
     videogameTitleRepository.save(videogameTitle);
 
     return "redirect:/videogames";
@@ -126,7 +126,7 @@ public class VideogameTitleController {
     return "redirect:/videogames";
   }
 
-  @PostMapping("/add_unit/{id}")
+  @PostMapping("/unit/add/{id}")
   public String addUnit(@PathVariable("id") int id, VideogameUnit unit) {
     Optional<VideogameTitle> videogame = videogameTitleRepository.findById(id);
     if (videogame.isPresent()) {
@@ -139,5 +139,18 @@ public class VideogameTitleController {
     }
 
     return "redirect:/videogames";
+  }
+
+  @GetMapping("/unit/edit/{id}")
+  public String deleteUnit(@PathVariable("id") int id) {
+    Optional<VideogameUnit> unit = videogameUnitRepository.findById(id);
+    if (unit.isPresent()) {
+      VideogameUnit u = unit.get();
+      u.setAvaliable_status(true);
+      videogameUnitRepository.save(u); 
+      return "redirect:/videogames/edit/{id}";
+    }
+
+    return "redirect:/videogames"; 
   }
 }

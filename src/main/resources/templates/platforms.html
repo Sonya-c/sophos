@@ -6,6 +6,14 @@
 </head>
 <body>
     <h1>Platforms</h1>
+    <h2>New Platform</h2>
+    <form th:action="@{/platforms}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create</button>
+    </form>
+    
+    <h2>All platforms</h2>
     <table>
         <thead>
             <tr>
@@ -21,11 +29,5 @@
         </tbody>
     </table>
 
-    <h2>New Platform</h2>
-    <form th:action="@{/platforms}" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <button type="submit">Create</button>
-    </form>
-</body>
+    </body>
 </html>

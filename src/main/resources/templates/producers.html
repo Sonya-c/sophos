@@ -6,6 +6,13 @@
 </head>
 <body>
     <h1>Producers</h1>
+     <h2>New Producer</h2>
+    <form th:action="@{/producers}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create</button>
+    </form>
+    <h2>All producers</h2>
     <table>
         <thead>
             <tr>
@@ -21,11 +28,6 @@
         </tbody>
     </table>
 
-    <h2>New Producer</h2>
-    <form th:action="@{/producers}" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <button type="submit">Create</button>
-    </form>
+   
 </body>
 </html>

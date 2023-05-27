@@ -6,36 +6,6 @@
 </head>
 <body>
   <h1>Videogames</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Release Date</th>
-        <th>Loan Price</th>
-        <th>Protagonists</th>
-        <th>Director</th>
-        <th>Producer</th>
-        <th>Platform</th>
-        <th>Number of Units</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:each="videogame : ${videogames}">
-        <td th:text="${videogame.title}">Title</td>
-        <td th:text="${#dates.format(videogame.realiseDate, 'dd/MM/yyyy')}">Release Date</td>
-        <td th:text="${videogame.loanPrice}">Loan Price</td>
-        <td th:text="${videogame.protagonists}">Protagonists</td>
-        <td th:text="${videogame.director.name}">Director</td>
-        <td th:text="${videogame.producer.name}">Producer</td>
-        <td th:text="${videogame.platform.name}">Platform</td>
-        <td>
-          <a th:href="@{'/videogames/edit/' + ${videogame.id}}">Edit</a>
-          <a th:href="@{'/videogames/delete/' + ${videogame.id}}">Delete</a>
-
-      </tr>
-    </tbody>
-  </table>
-
   <h2>Create a new Videogame Title</h2>
   <form th:action="@{/videogames}" method="post">
     <label for="title">Title:</label>
@@ -70,5 +40,36 @@
 
     <button type="submit">Create New Videogame Title</button>
   </form>
-</body>
+  
+  <h2>All videogames titles</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Release Date</th>
+        <th>Loan Price</th>
+        <th>Protagonists</th>
+        <th>Director</th>
+        <th>Producer</th>
+        <th>Platform</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="videogame : ${videogames}">
+        <td th:text="${videogame.title}">Title</td>
+        <td th:text="${#dates.format(videogame.realiseDate, 'dd/MM/yyyy')}">Release Date</td>
+        <td th:text="${videogame.loanPrice}">Loan Price</td>
+        <td th:text="${videogame.protagonists}">Protagonists</td>
+        <td th:text="${videogame.director.name}">Director</td>
+        <td th:text="${videogame.producer.name}">Producer</td>
+        <td th:text="${videogame.platform.name}">Platform</td>
+        <td>
+          <a th:href="@{'/videogames/edit/' + ${videogame.id}}">Edit</a>
+          <a th:href="@{'/videogames/delete/' + ${videogame.id}}">Delete</a>
+      </tr>
+    </tbody>
+  </table>
+
+ </body>
 </html>

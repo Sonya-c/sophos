@@ -57,8 +57,6 @@ CREATE TABLE loan (
     status BOOLEAN,
     videogame_unit_id INT,
     client_id INT,
-    loan_id INT,
     FOREIGN KEY (videogame_unit_id) REFERENCES videogame_unit(id),
     FOREIGN KEY (client_id) REFERENCES clients(id),
-    FOREIGN KEY (loan_id) REFERENCES loan(id)
 );

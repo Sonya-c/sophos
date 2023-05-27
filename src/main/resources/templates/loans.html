@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Loans</title>
+</head>
+<body>
+    <h1>Loans</h1>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Loan date</th>
+            <th>Return date</th>
+            <th>Status</th>
+            <th>Videogame</th>
+            <th>Videogame unit</th>
+            <th>Client username</th>
+        </thead>
+        <tbody>
+            <tr th:each="loan : ${loans}">
+                <td th:text="${loan.id}"></td>
+                <td th:text="${loan.loanDate}"></td>
+                <td th:text="${loan.returnDate}"></td>
+                <td th:text="${loan.status}"></td>
+                <td th:text="${loan.videogameUnit.videogameTitle.title}"></td>
+                <td th:text="${loan.videogameUnit.id}"></td>
+                <td th:text="${loan.client.username}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>New loan</h2>
+    <form method="post" th:action="@{/loans}">
+        <label for="loandate">Loan date: </label>
+        <input type="date" id="loandate" name="loandate">
+        
+        <label for="returndate">Return date: </label>
+        <input type="date" id="returndate" name="returndate">
+        
+        <label for="videogame">Videogame</label>
+        <select id="videogame" name="videogame.id" required >
+            <option value="">Select a videogame</option>
+            <option
+                th:each="videogame : ${videogames}"
+                th:value="${videogame.id}"
+                th:text="${videogame.title}">
+            </option>
+        </select><br>
+        
+         <label for="client">client:</label>
+        <select id="client" name="client.id" required >
+            <option value="">Select a client</option>
+            <option
+                th:each="client : ${clients}"
+                th:value="${client.id}"
+                th:text="${client.username}">
+            </option>
+        </select><br>
+        <button type="submit">Create</button>
+    </form> 
+</body>
+</html>

@@ -7,6 +7,15 @@
 </head>
 <body>
     <h1>Directors</h1>
+    
+    <h2>New Director</h2>
+    <form th:action="@{/directors}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create</button>
+    </form>
+
+    <h2>All directors</h2>
     <table>
         <thead>
             <tr>
@@ -22,11 +31,5 @@
         </tbody>
     </table>
 
-    <h2>New Director</h2>
-    <form th:action="@{/directors}" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <button type="submit">Create</button>
-    </form>
 </body>
 </html>
