@@ -58,22 +58,16 @@
         <thead>
             <th>Unit id</th>
             <th>Unit status</th>
-            <th>Action</th>
         </thead>
         <tbody>
             <tr th:each="unit : ${videogame.videogameUnits}">
                 <td th:text="${unit.id}">Unit id</td>
                 <td th:text="${unit.avaliable_status}">Unit status</td>
-                <td>
-                    <a th:href="@{/videogames/unit/edit/{id}(id=${videogame.id})}">
-                        Change status
-                    </a>
-                </td> 
             </tr>
         </tbody>
     </table>
 
     <form method="POST" th:action="@{/videogames/unit/add/{id}(id=${videogame.id})}">
-        <button type="submit">Create new unit</button>
+        <button type="submit">New unit</button>
     </form>
   </body>

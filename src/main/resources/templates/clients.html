@@ -59,7 +59,8 @@
                 <td th:text="${client.address}"></td>
                 <td th:text="${client.birthdate}"></td>
                 <td>
-                    <a th:href="@{'/clients/edit/' + ${client.id}}">Edit</a>
+                     <a th:href="@{'/clients/edit/' + ${client.id}}">Edit</a> 
+                     <a th:href="@{'/clients/loans/' + ${client.id}}">See loans</a>
                 </td>
             </tr>
         </tbody>

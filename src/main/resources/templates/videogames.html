@@ -42,6 +42,26 @@
   </form>
   
   <h2>All videogames titles</h2>
+  <form th:action="@{/videogames/}" method="get">
+    <label for="director">Director:</label>
+    <select id="director" name="director.id" >
+      <option value="">Select a Director</option>
+      <option th:each="director : ${directors}" th:value="${director.id}" th:text="${director.name}"></option>
+    </select>
+
+    <label for="producer">Producer:</label>
+    <select id="producer" name="producer.id" >
+      <option value="">Select a Producer</option>
+      <option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}"></option>
+    </select>
+
+    <label for="platform">Platform:</label>
+    <select id="platform" name="platform.id" >
+      <option value="">Select a Platform</option>
+      <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
   <table>
     <thead>
       <tr>
@@ -66,7 +86,6 @@
         <td th:text="${videogame.platform.name}">Platform</td>
         <td>
           <a th:href="@{'/videogames/edit/' + ${videogame.id}}">Edit</a>
-          <a th:href="@{'/videogames/delete/' + ${videogame.id}}">Delete</a>
       </tr>
     </tbody>
   </table>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <p>Most frequent user</p>
+    <p th:text="${client.username}"></p>
+    <p th:text="${clientloans}"></p>
+    <p>Most frequent videogame</p>
+    <p th:text="${videogame.title}"></p>
+    <p th:text="${videogameloans}"></p>
+    <p>Today loans</p>
+    <a th:href="@{/videogames/}">Videogames</a>
+    <a th:href="@{/clients/}">clients</a>
+    <a th:href="@{/loans/}">loans</a>
+    <a th:href="@{/directors/}">directors</a>
+    <a th:href="@{/producers/}">producers</a>
+    <a th:href="@{/platforms/}">platforms</a>
+</body>
+

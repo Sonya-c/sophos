@@ -6,30 +6,7 @@
 </head>
 <body>
     <h1>Loans</h1>
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Loan date</th>
-            <th>Return date</th>
-            <th>Status</th>
-            <th>Videogame</th>
-            <th>Videogame unit</th>
-            <th>Client username</th>
-        </thead>
-        <tbody>
-            <tr th:each="loan : ${loans}">
-                <td th:text="${loan.id}"></td>
-                <td th:text="${loan.loanDate}"></td>
-                <td th:text="${loan.returnDate}"></td>
-                <td th:text="${loan.status}"></td>
-                <td th:text="${loan.videogameUnit.videogameTitle.title}"></td>
-                <td th:text="${loan.videogameUnit.id}"></td>
-                <td th:text="${loan.client.username}"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>New loan</h2>
+     <h2>New loan</h2>
     <form method="post" th:action="@{/loans}">
         <label for="loandate">Loan date: </label>
         <input type="date" id="loandate" name="loandate">
@@ -58,5 +35,35 @@
         </select><br>
         <button type="submit">Create</button>
     </form> 
-</body>
+    <h2>All loans</h2>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Loan date</th>
+            <th>Return date</th>
+            <th>Status</th>
+            <th>Videogame</th>
+            <th>Unit</th>
+            <th>Client</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <tr th:each="loan : ${loans}">
+                <td th:text="${loan.id}"></td>
+                <td th:text="${loan.loanDate}"></td>
+                <td th:text="${loan.returnDate}"></td>
+                <td th:text="${loan.status}"></td>
+                <td th:text="${loan.videogameUnit.videogameTitle.title}"></td>
+                <td th:text="${loan.videogameUnit.id}"></td>
+                <td th:text="${loan.client.username}"></td>
+                <td th:if="${!loan.status}">
+                    <form method="post" th:action="@{/loans/return/{id}(id=${loan.id})}">
+                        <button type="submit">Return</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+   </body>
 </html>

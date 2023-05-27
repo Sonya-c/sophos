@@ -60,6 +60,9 @@ public class LoanController {
                 l.setVideogameUnit(unit);
                 l.setClient(client);
                 l.setStatus(false);
+                unit.setAvaliable_status(false);
+                client.addLoan(l);
+                videogameUnitRepository.save(unit);
                 loanRepository.save(l);
                 return "redirect:/loans";
             }
@@ -68,5 +71,18 @@ public class LoanController {
         model.addAttribute("error", "There are no units aviable");
         model.addAttribute("message", "Try adding more unit for this videogame title");
         return "error";
+    }
+
+    @PostMapping("/return/{id}")
+    public String returnLoan(@PathVariable("id") int id) {
+        Optional<Loan> loan = loanRepository.findById(id);
+
+        if (loan.isPresent()) {
+            loan.get().setStatus(true);
+            loan.get().getVideogameUnit().setAvaliable_status(true);
+
+            loanRepository.save(loan.get());
+        }
+        return "redirect:/loans";
     }
 }

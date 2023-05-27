@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>My loans</title>
+    <title th:text="${client.username} + ' loans'">loans</title>
 </head>
 <body>
-    <h1>My loans</h1>
+  <h1 th:text="${client.username} + ' loans'">loans</h1>
     <table>
       <thead>
         <th>Videogame</th>

@@ -1,5 +1,7 @@
 package com.reto.sophos.controllers;
 import java.util.List;
+import java.util.stream.*;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,8 +44,21 @@ public class VideogameTitleController {
   private PlatformRepository platformRepository;
   
   @GetMapping("")
-  public String listVideogameTitles(Model model) {
-    List<VideogameTitle> videogameTitles = videogameTitleRepository.findAll();
+  public String listVideogameTitles(
+      Model model,
+      @RequestParam(value = "director.id", required=false) Integer directorId,
+      @RequestParam(value = "producer.id", required=false) Integer producerId,
+      @RequestParam(value = "platform.id", required=false) Integer platformId) {
+    List<VideogameTitle> videogameTitles = videogameTitleRepository
+      .findAll()
+      .stream()
+      .filter(videogame -> 
+              (directorId == null || Objects.equals(videogame.getDirector().getId(),directorId)) &&
+              (producerId == null || Objects.equals(videogame.getProducer().getId(),producerId)) &&
+              (platformId == null || Objects.equals(videogame.getPlatform().getId(),platformId))
+            )
+      .collect(Collectors.toList());
+
     model.addAttribute("videogames", videogameTitles);
     model.addAttribute("newVideogame", new VideogameTitle());
     model.addAttribute("directors", directorRepository.findAll());
@@ -141,16 +156,4 @@ public class VideogameTitleController {
     return "redirect:/videogames";
   }
 
-  @GetMapping("/unit/edit/{id}")
-  public String deleteUnit(@PathVariable("id") int id) {
-    Optional<VideogameUnit> unit = videogameUnitRepository.findById(id);
-    if (unit.isPresent()) {
-      VideogameUnit u = unit.get();
-      u.setAvaliable_status(true);
-      videogameUnitRepository.save(u); 
-      return "redirect:/videogames/edit/{id}";
-    }
-
-    return "redirect:/videogames"; 
-  }
 }

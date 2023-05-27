@@ -1,12 +1,9 @@
 package com.reto.sophos.models;
-
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import org.springframework.format.annotation.DateTimeFormat;
-
+import java.util.List;
+import java.util.ArrayList;
 @Entity
 public class Client {
     @Id
@@ -22,11 +19,14 @@ public class Client {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
+    
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Loan> loans = new ArrayList<>();
 
     public int getId() {
         return id;
     }
-
+    
     public String getNames() {
         return names;
     }
@@ -81,6 +81,18 @@ public class Client {
     
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public void addLoan(Loan loan) {
+        this.loans.add(loan);
     }
     
 }
