@@ -9,10 +9,10 @@
      <h2>New loan</h2>
     <form method="post" th:action="@{/loans}">
         <label for="loandate">Loan date: </label>
-        <input type="date" id="loandate" name="loandate" required >
+        <input type="date" id="loandate" name="loandate" required ><br>
         
         <label for="returndate">Return date: </label>
-        <input type="date" id="returndate" name="returndate" required >
+        <input type="date" id="returndate" name="returndate" required ><br>
         
         <label for="videogame">Videogame</label>
         <select id="videogame" name="videogame.id" required >
@@ -50,8 +50,8 @@
         <tbody>
             <tr th:each="loan : ${loans}">
                 <td th:text="${loan.id}"></td>
-                <td th:text="${#dates.format(loan.loanDate, 'yyyy-mm-dd')}"></td>
-                <td th:text="${#dates.format(loan.returnDate, 'yyyy-mm-dd')}"></td>
+                <td th:text="${#dates.format(loan.loanDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${#dates.format(loan.returnDate, 'yyyy-MM-dd')}"></td>
                 <td th:text="${loan.status}">
                 </td>
                 <td>

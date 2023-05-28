@@ -56,7 +56,7 @@
                 <td th:text="${client.email}"></td>
                 <td th:text="${client.cellphone}"></td>
                 <td th:text="${client.address}"></td>
-                <td th:text="${#dates.format(client.birthdate, 'yyyy-mm-dd')}"></td>
+                <td th:text="${#dates.format(client.birthdate, 'yyyy-MM-dd')}"></td>
                 <td>
                      <a th:href="@{'/clients/edit/' + ${client.id}}">Edit</a> 
                      <a th:href="@{'/clients/loans/' + ${client.id}}">See loans</a>

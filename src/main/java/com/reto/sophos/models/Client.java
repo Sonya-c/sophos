@@ -17,7 +17,7 @@ public class Client {
     private String cellphone;
     private String address;
     
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
     
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)

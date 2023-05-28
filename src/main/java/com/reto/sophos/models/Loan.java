@@ -11,10 +11,10 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date loanDate;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date returnDate;
 
     private boolean status; 

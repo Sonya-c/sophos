@@ -44,8 +44,8 @@ public class LoanController {
     public String createLoan(
             @RequestParam("videogame.id") int videogameID,
             @RequestParam("client.id") int clientID,
-            @DateTimeFormat(pattern = "yyyy-mm-dd") @RequestParam("loandate") Date returnDate,
-            @DateTimeFormat(pattern = "yyyy-mm-dd") @RequestParam("returndate") Date loanDate,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("returndate") Date returnDate,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("loandate") Date loanDate,
             Model model) {
         
         Client client = clientRepository.findById(clientID).orElseThrow(() -> new IllegalArgumentException("Invalid client ID: " + clientID));
@@ -55,8 +55,8 @@ public class LoanController {
         for (VideogameUnit unit: videogame.getVideogameUnits()) {
             if (unit.getAvaliable_status()) {
                 Loan l = new Loan();
-                l.setReturnDate(loanDate);
-                l.setLoanDate(returnDate);
+                l.setReturnDate(returnDate);
+                l.setLoanDate(loanDate);
                 l.setVideogameUnit(unit);
                 l.setClient(client);
                 l.setStatus(false);

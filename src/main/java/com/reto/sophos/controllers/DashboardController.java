@@ -36,16 +36,23 @@ public class DashboardController {
     
     @GetMapping("")
     public String dashboard(Model model) {
-        Client client = findMostFrequentClient();
-        Map.Entry<VideogameTitle, Integer> videogame = findMostFrequentVideogame();
-        List<Loan> loans = getTodayLoans();
+                
+        if (loanRepository.findAll().size() > 0) {
+            Client client = findMostFrequentClient();
+            Map.Entry<VideogameTitle, Integer> videogame = findMostFrequentVideogame();
+            List<Loan> loans = getTodayLoans();
 
-        model.addAttribute("client", client);
-        model.addAttribute("clientloans", client.getLoans().size());
-        model.addAttribute("videogame", videogame.getKey());
-        model.addAttribute("videogameloans", videogame.getValue());
-        model.addAttribute("loans", loans);
+            model.addAttribute("client", client);
+            model.addAttribute("clientloans", client.getLoans().size());
 
+            model.addAttribute("videogame", videogame.getKey());
+            model.addAttribute("videogameloans", videogame.getValue());
+            model.addAttribute("loans", loans);
+        } else {
+            model.addAttribute("error", "There are no loans");
+            model.addAttribute("message", "Try adding loans");
+            return "error";
+        }
         return "dashboard";
     }
 
@@ -76,7 +83,7 @@ public class DashboardController {
         Date today = new Date();
         System.out.println(today.toString());
         for (Loan loan : loanRepository.findAll()) {
-            System.out.println(loan.getLoanDate().toString() + loan.getLoanDate().compareTo(today));
+            System.out.println(today.getMonth() + " " + loan.getLoanDate().getMonth());
             
         }
         return loanRepository.findAll()

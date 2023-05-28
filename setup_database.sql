@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS SOPHOS;
 
 USE SOPHOS;
 
-CREATE TABLE clients (
+CREATE TABLE client (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255),
     names VARCHAR(255),
@@ -10,7 +10,7 @@ CREATE TABLE clients (
     email VARCHAR(255),
     cellphone VARCHAR(255),
     address VARCHAR(255),
-    birthdate DATE
+    birthdate DATETIME(6)
 );
 
 
@@ -45,18 +45,18 @@ CREATE TABLE videogame_title (
 
 CREATE TABLE videogame_unit (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    avaliabl_status BOOLEAN,
+    avaliable_status BOOLEAN,
     videogame_title_id INT,
     FOREIGN KEY (videogame_title_id) REFERENCES videogame_title(id)
 );
 
 CREATE TABLE loan (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    loanDate DATE,
-    returnDate DATE,
+    loan_date DATETIME(6),
+    return_date DATETIME(6),
     status BOOLEAN,
     videogame_unit_id INT,
     client_id INT,
     FOREIGN KEY (videogame_unit_id) REFERENCES videogame_unit(id),
-    FOREIGN KEY (client_id) REFERENCES clients(id),
+    FOREIGN KEY (client_id) REFERENCES client(id)
 );

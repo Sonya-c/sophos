@@ -48,15 +48,17 @@ public class VideogameTitleController {
       Model model,
       @RequestParam(value = "director.id", required=false) Integer directorId,
       @RequestParam(value = "producer.id", required=false) Integer producerId,
-      @RequestParam(value = "platform.id", required=false) Integer platformId) {
+      @RequestParam(value = "platform.id", required=false) Integer platformId,
+      @RequestParam(value = "year", required=false) Integer year) {
     List<VideogameTitle> videogameTitles = videogameTitleRepository
       .findAll()
       .stream()
       .filter(videogame -> 
               (directorId == null || Objects.equals(videogame.getDirector().getId(),directorId)) &&
               (producerId == null || Objects.equals(videogame.getProducer().getId(),producerId)) &&
-              (platformId == null || Objects.equals(videogame.getPlatform().getId(),platformId))
-            )
+              (platformId == null || Objects.equals(videogame.getPlatform().getId(),platformId)) &&
+              (year == null || Objects.equals(videogame.getRealiseDate().getYear() + 1900,year)  
+            ))
       .collect(Collectors.toList());
 
     model.addAttribute("videogames", videogameTitles);
